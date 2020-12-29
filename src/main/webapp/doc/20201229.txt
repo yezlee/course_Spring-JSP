@@ -1,0 +1,103 @@
+	
+	
+	1228 복습
+	
+	1. jsp는 servlet으로 변환된어 서비스 된다.
+	2. servlet-container(tomcat)이 jsp를 서블릿으로 변환하는 과정에서 사용하는 폴도는 work폴더
+		- tomcat도 개발자가 만든 프로그램으로 비정상적으로 동작할 때가 있음
+		- 개발자가 jsp파일을 수정하였음에도 수정 내역이 반영되지 않을 경우, work 폴더에 생성된 jsp 	변환 파일들(java, class)을 삭제해주면 새롭게 만들어준다.
+	3. jsp를 서블릿으로 변환하는 시기는 해당 jsp에 대해 최초 요청이 일어났을 경우에 변환
+		- 서블릿으로 생성이 된 이후 같은 파일에 대한 요청은 이미 변환된 파일로 서비스
+		
+		
+	jsp 구성요소
+	1. 지시자(%@) : page에 대한 설정 정보를 말한다. - 주로 쓰는건 import밖에 없지, 그거랑 language!
+	2. 스크립틀릿(%) : java 코드가 들어감 ==> JSTL이라는 애로 나중에 바꿀거야. JSTL(Java Standard Tag Library)
+	3. 표현식(%=) : 문자열로 출력 ==> EL(Expression Language, 표현언어)
+	4. 주석
+	5. 선언부(쓸일이 없음)
+		- 변수나 메소드 선언하는 부분
+		- jsp는 화면 컨텐츠를 생성하는 역할(화면을 그려내는 애)
+		- 근데 변수가 메소드는 로직 처리시 주로 사용 그래서 여기선 선언부를 잘 안씀
+		
+		
+	1번이랑 4번만 주로 사용함
+	
+1229
+	
+1. factorial
+재귀함수(메소드) : 자기 자신을 호출하는 함수(메소드)	
+
+maven package시 test 코드 실행 스킵
+mvn package - Dmaven.test.skip=true
+
+HttpServletRequest : 사용자가 요청을 보낼 때의 정보(파라미터, 헤더(브라우저 정보 갖고가는), 쿠키...)를 은닉화한 객체
+					 Servlet-Container에서 생성 
+					 Servlet-Container가 생성하여 Service메소드를 호출할 때 사용되는 인자 Service(doXXX)
+					 
+주요 사용용도
+
+	1. 파라미터 정보 확인
+		- 인위 조작이 불가
+		  getParameter는 존재하지만 serParameter 메소드는 없음
+		  	==> request 클래스의 Wrapper클래스를 이용하여 파라미터 조작 가능
+		  	
+	2. 헤더 정보 확인
+		
+	3. 속성(attribute) 정보 설정, 조회
+	 	- 개발자가 인위 조작 가능
+	 	  getAttribute, setAttribute 메소드 존재
+	
+	(위 3가지가 주요)
+	 	  
+	4. contextPath 확인
+		-> 서블릿 + 컨텐츠(js, css, image 등) 들의 집합
+		
+		webApplication =(유사) contextPath 
+		
+		request.getContextPath()를 통해 contextPath 문자열을 얻어올 수 있다.
+		
+		서버 하나에 여러개의 웹 어플리케이션을 서비스 하는 것이 가능
+		==> url 요청시 어떤 웹 어플리케이션을 의미하는지 구분이 필요
+		
+		http://도메인/CONTEXT_PATH/경로
+		==> css, javaScript, image 파일의 경로를 설정할 때 사용
+		
+			jsp라는 이름으로 contextPath가 설정된 웹 어플리케이션의 경우
+			webapp/image/brown.png 파일의 경로를 다음과 같이 설정할 수 있다.
+			<img src="/image/brown.png"/>
+			
+			==> jsp라는 이름의 context path를 수정할 경우 링크와 관련된 부분을 모두 수정해야하는 문제점이 발생
+			
+				request.getContextPath()메소드를 통해 유지보수 문제 해결 가능
+				<img src="<%=request.getContextPath() %>/image/brown.png">
+				
+		
+		webapp/jsp/request.jsp
+		
+		jsp파일 내용 : request 객체에서 제공하는 메소드와, 메소드의 리턴값을 확인
+		
+		<body>
+			request.getContentType() : 리턴값을 출력<br>
+			request.getMethod() : 리턴값을 출력<br>
+			request.getRequestURI() : 리턴값을 출력<br>
+			request.getContextPath() : 리턴값을 출력<br>
+			request.getServerPort() : 리턴값을 출력<br>
+		</body> 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			 	  
+	 	  
+	 	  
+	 	  	  				 
