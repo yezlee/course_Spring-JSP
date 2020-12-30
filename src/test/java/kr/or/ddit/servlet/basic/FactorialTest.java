@@ -1,6 +1,6 @@
 package kr.or.ddit.servlet.basic;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -64,12 +64,12 @@ public class FactorialTest {
 	@Test
 	public void test() {
 		logger.debug("test()");
-		/***Given***/ //현재 테스트 환경에서 주어진 조건을 기술
+		/***Given***/ //현재 테스트 환경에서 주어진 조건을 기술 ==> 준비
 		// @Before가 test보다 항상 먼저 실행되서 안써줘도 에러안남  
-		/***When***/ //테스트를 검증하고자 하는 행위(method call)
+		/***When***/ //테스트를 검증하고자 하는 행위(method call) ==> 실행
 		int result = factorial.calculate(5);
 
-		/***Then***/ //코드를 실행한 결과와 예상한 값이 일치하는지 검증
+		/***Then***/ //코드를 실행한 결과와 예상한 값이 일치하는지 검증 ==> 단언
 		assertEquals(120, result);
 		
 	}
