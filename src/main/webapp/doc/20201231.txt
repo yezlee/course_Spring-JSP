@@ -1,0 +1,99 @@
+하나의 서버에, 복수의 웹 어플리케이션을 기동하는 경우에
+발생할 수 있는 url 충돌
+
+첫번째 웹 어플리케이션 : 수업시간에 진행하는 jsp프로젝트, contextPath : /
+	webapp/jsp/basic.jsp
+	==> localhost/jsp/basic.jsp
+	(contextPath를 만들어놔서 바로 폴더로 간다)
+	
+두번째 웹 어플리케이션 : 신규 프로젝트 생성, contextPath : /jsp
+	webapp/basic.jsp
+	==> localhost/jsp/basic.jsp
+	
+결론 : contextPath가 우선시된다.
+================> contextPath가 먼저 적용되어 두번째 웹 어플리케이션에서 응답을 생성한 것을 확인
+클라이언트 입장에서는 url만 보고선 contextPath인지 일반 폴더를 가리키는 경로인지를 판단할 수는 없다. 	
+
+
+
+기본객체(내장객체) - 선언하지 않아도 기본으로 있는거
+기본객체 중에서도 scope를 갖고 있는 애는 중요함
+
+jsp기본객체
+- 스크립틀릿에서 별도로 선언없이 사용할 수 있는, 미리 선언되어있는 객체
+jsp파일이 servlet으로 변환되는 과정(서버가 변환)에서 선언되어 있는 것을 확인할 수 있다.
+(work폴더에서 확인)
+
+pageContext : 4개의 scope에 접근할 수 있는 객체
+(scope객체임)   
+	- pageContext 소멸시점 : ...?????
+				  
+			  getAttribute, setAttribute,
+			  findAttribute() (pageContext=>request=>session=>application) 이 순으로 찾는다
+			  
+			  jsp에 선언된 다른 내장객체를 관리할 수있다.
+			  getPage(), getRequest(), getSession(), getServletContext()
+			  
+	- 의도하지 않았는데 암묵적으로 많이쓰임
+(pageContext의 타입 : pageContext)			
+			
+pageContext를 pageScope라고도 함
+page라는 애도 있지만 쓸일이 별로 없음
+직접적으로 호출할일이 없음			
+			  
+			  
+request : (scope객체임) 
+	- request 소멸시점 : 응답이 생성된 이후 
+나중에 설명
+
+	- 제일 많이 쓰임
+(request의 타입 : HttpServletRequest)	
+	
+	
+
+session : 서버의 사용자별로 할당되는 공간, 사용자를 식별하기 위해 사용(cookie-session) 
+	- session 소멸시점 : 특정시간이 지난 후(서버에 설정된 시간만큼 서버로 요청을 안 보내면 소멸)
+					   or 강제로 삭제 가능(session.invalidate(), session. 
+	
+	-그다음으로 많이쓰임
+(session의 타입 : HttpSession)
+	
+	
+	
+application : 서버 메모리에 할당되는 공간, 서버에 하나만 존재하는 공간
+			  web.xml에 설정한 초기화 파라미터 정보를 얻어올 수 있음
+(application의 타입 : servletContext)			  
+			  
+
+위에 4가지는 scope가 서버인데 소멸시점이 각각 다 다름
+
+여긴 중요
+=====================================================================================
+여긴 soso
+	
+page : jsp페이지 객체(인스턴스)를 의미
+	   _jspService()
+
+config : 서블릿 컨테이너가 서블릿 초기화시 사용하는 설정을 저장한 객체
+		 servlet의 init 메소드의 인자로 전달된다.
+		 	   	
+out : 응답 생성을 위한 출력 객체
+	  servlet.getWriter() ==> PrintWriter type객체 반환, PrintWriter 객체와 유사
+	  
+	  jsp에서 문자열을 생성하기 위해 표현식을 사용.
+	  자바의 반복문을 사용하며 표현식을 사용하기 위해서는 다음과 같은 형태로 코드를 작성함
+	  
+	  <% for(int  i = 0; i < 10; i++){ %>
+	   	<%=i%>
+	  <% } %> 				  
+			  
+	  스크립틀릿과 표현식의 구문 표기 <%, <%= 를 열고 닫는 부분으로 코드 가독성이 떨어짐
+	  out 객체를 이용하면 표현식으로 사용하지 않고도 문자를 출력할 수 있음.	  
+
+	  <% for(int  i = 0; i < 10; i++){ %>
+	   	out.write(i)
+	  <% } %> 
+
+		==> 위에거를 이렇게 바꿀수도 있지. 그럼 <%이런거 계속 안써도 되니까
+		근데 out. 안쓰고 싶어서 jsp를 사용하는건데 
+		암튼 나중에 l~ 뭐 배우면 이것도 탈락.
