@@ -12,8 +12,20 @@
 
     <title>Signin Template for Bootstrap</title>
 
+<%--
+    <title>Signin Template for Bootstrap **</title>
+    제목에 **이렇게 붙이고 실행함으로써 확인할수있어. 그리고 다시 **지우면 됨
+    
     <!-- Bootstrap core CSS -->
-    <link href="<%=request.getContextPath() %>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath() %>/css/bootstrap.min.css" rel="stylesheet"> 
+	이 링크태그를 아래 include에 따라가면 있는 jsp파일에 넣어놓음
+	그래서 주석처리    
+--%>
+	<%@ include file ="/common/common_lib.jsp" %>
+	<!-- common_lib.jsp의 내용을 지금 기술되는 부분에 코드를 복사해서 붙여넣기  -->
+	
+	
+	
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
