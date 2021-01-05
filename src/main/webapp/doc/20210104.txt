@@ -1,0 +1,148 @@
+HTTP 프로토콜의 특징
+1. 비연결성
+	- 요청을 보내고 응답을 받게 되면 서버와의 연결은 끊어진다.
+	- 서버로 재요청시 서버는 클라이언트가 누구인지 알수있도록 session과 cookie를 이용
+	
+2. 웹브라우저는 서버로 요청시 해당서버(도메인)에 설정된 쿠키값을 항상 같이 전송한다.
+	- 서버가 클라이언트가 누구인지 식별할 때 사용	
+	- cookie는 브라우저에 저장되는 정보! 문자열로 저장이 됨
+	(F12 -> application tap - storage안에 쿠키가 저장되어있음)
+
+3. java기반 서버는 요청이 받게 되면 해당 요청의 쿠키 정보중에
+   JSESSIONID라는 쿠키가 있는지 확인한다.	
+   
+   <JSESSIONID 쿠키가 없을 경우>
+   서버는 신규접속요청이라고 판단하고 SESSION을 새롭게 만들고 응답을 생성할 때
+   SESSION ID(JSESSIONID)를 응답헤더에 포함하고 
+   해당 응답을 받은 브라우저는 JSESSIONID 쿠키값을 브라우저에 저장한다.
+   
+   <JSESSIONID 쿠키가 있을 경우>
+   JSESSIONID에 해당하는 SESSION을 사용(기존 접속한 사용자로 인식)
+   
+   - 세션이라하면 사용자라고 생각하면된다!
+   - 최초요청때는 아무 정보가 없지. 그래서 세션을 하나 만들어, 그리고 쿠키를 같이 보내 응답페이지에
+   - 그러면 
+   
+
+   
+웹에서 사용자(클라이언트)란?
+: 사용자랑 클라이언트랑 동일 인물? -> 아니다!!(X)
+: 일반적으로 사용자란 -> 웹브라우저를 말한다.
+: 시크릿모드는 또 하나의 브라우저로 인식함
+
+cookie 길찾기 ==> 헨젤과 그레텔에서의 쿠키를 진짜로 따온거
+
+속성 : 클라이언트의 요청을 처리하는 과정에서 servlet/jsp 사이에서 공유하는 정보
+(스코프 : 속성을 저장할수있는 공간)
+파라미터 : 
+
+속성이랑 파라미터는 다르다. 둘의 차이점을 잘 알아둘것.
+
+
+<SCOPE>
+
+page는 jsp페이지내에서만(html안에 header.jsp, nav.jsp, content.jsp, footer.jsp 등등으로 나눠져 있는데 
+				    'content.jsp'이 부분만 페이지가 바뀔때마다 주로 바뀌지. 이게 page 영역임. 근데 별 의미가 없어
+				    주로 html파일을 통째로 보내지 jsp페이지만 따로따로 보내지 않으니까)   
+ 
+request 
+session 두개 제일 많이 쓰는데
+
+세션은 로그인정보를 주로 넣어놓는다. 어느페이지를 가도 로그인이 유지가 될수 있도록.
+(세션은 인스턴스 변수라고 생각함됨)
+
+이 용어들은 잘 알아둬야함!!!!! 타입이 뭐고 이런거. 
+
+
+속성 : 요청을 처리하는 과정에서 servlet/jsp 사이에서 공유하는 정보
+scope : 속성을 담을수 있는 영역/객체
+
+scope객체
+- page(pageContext) : 해당 jsp페이지내에서만 유효한 공간(java의 block안에 선언된 지역변수)
+- request(HttpServletRequest) : 요청이 처리될 때까지만 유효한 공간(java의 지역변수)
+- session(HttpSession) : 세션이 유효한 동안에만 유지되는 공간(java의 인스턴스 객체)
+- application(ServletContext) : 웹 어플리케이션에서 하나만 유지되는 공간(java의 static 변수)
+
+
+
+=======================
+scope 객체 실습
+웹브라우저로 다음 주소에 접속 : localhost/scope (겟방식으로 요청)
+해당 요청을 처리해줄 servlet 생성(kr.or.ddit.servlet.scope.Scope.java)
+get 요청에 대해서는 화면을 webapp/jsp/scope.jsp로 응답생성 위임
+(위임하는 방법엔 두가지가 있음. forward/redirect)
+
+scope.jsp에는 하나의 input태그(name-scope)와 submit 버튼을 생성
+전송 메소드는 post, 전송주소는 /scope
+
+
+Scope.java의 doPost에서는 요청 파라미터중 scope 파라미터를 확인하여
+request, session, application scope에 다음과 같이 속성을 저장
+
+request : 속성명 = request, 속성값 = scope파라미터값 + "_request" 
+session : 속성명 = session, 속성값 = scope파라미터값 + "_session" 
+application : 속성명 = application, 속성값 = scope파라미터값 + "_application" 
+
+
+속성설정이 끝나면 webapp/jsp/scopeResult.jsp로 forward
+scopeResult.jsp에서는 Scope servlet에서 설정한 3개의 속성을
+속성명 : 속성값 
+속성명 : 속성값 
+속성명 : 속성값 
+속성명 : 속성값 형식으로 화면에 출력
+
+scope 객체의 속성관련 메소드
+속성 조회 : 스코프객체.getAttribute("속성명") , 반환타입 : Object
+		*** 비교 getParameter("파라미터명"), 반환타입 : String
+속성 저장 : 스코프객체.setAttribute("속성명", "속성값") , 반환타입 : void
+
+속성 삭제 : 스코프객체.removeAttribute("속성명") , 반환타입 : void(근데 숫자 반납하지않나?)
+
+속성 이름 검색 : 스코프객체.getAttributeNames() , 반환타입 : Enumeration
+
+
+
+테스트
+[1. 최초접속]
+1. localhost/scope 접속
+2. input tag에 brown값 입력 후 전송 버튼 클릭
+3. 결과 화면 확인
+	request : brown_request
+	session : brown_session
+	application : brown_application
+	
+[2. [1. 최초접속]과 같은 브라우저를 사용하여 localhost/jsp/scopeResult.jsp로 바로 접속시]
+	request : null
+	session : brown_session
+	application : brown_application	
+
+[3. [1. 최초접속]과 다른 브라우저를 사용하여 localhost/jsp/scopeResult.jsp로 바로 접속시]
+	request : null
+	session : null
+	application : brown_application	
+   (application은 서버 하나로만 사용을 해서 다른 브라우저에서 접속해도 같아)
+
+
+[4. [3.]과 동일한 브라우저를 사용하여 localhost/scope로 접속 후 input태그에 sally값 입력후 전송 시]
+	request : sally_request
+	session : sally_session
+	application : sally_application
+   (application은 서버 하나로만 사용을 해서 [3.]번에서 있던걸 4번 함으로써 덮어쓴거)  
+
+[5. [1. 최초접속]과 동일한 브라우저를 사용하여 localhost/jsp/scopeResult.jsp로 접속 시]
+	request : null
+	session : brown_session
+	application : sally_application
+   (application은 서버 하나로만 사용을 해서 바로 전에 [4.]번에서 했던게 남아있는거지.) 
+   
+   
+   
+   우리 수업에선 항상 모델2를 쓸것임(요청은 servlet이 하고 응답은 jsp가 하고!)
+   
+   
+   
+   
+   
+   
+    
+   

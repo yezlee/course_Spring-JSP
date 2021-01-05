@@ -40,7 +40,7 @@ pageContext : 4개의 scope에 접근할 수 있는 객체
 pageContext를 pageScope라고도 함
 page라는 애도 있지만 쓸일이 별로 없음
 직접적으로 호출할일이 없음			
-			  
+(지역변수라고 생각함됨(if, for block))			  
 			  
 request : (scope객체임) 
 	- request 소멸시점 : 응답이 생성된 이후 
@@ -48,7 +48,7 @@ request : (scope객체임)
 
 	- 제일 많이 쓰임
 (request의 타입 : HttpServletRequest)	
-	
+(지역변수라고 생각함됨)	
 	
 
 session : 서버의 사용자별로 할당되는 공간, 사용자를 식별하기 위해 사용(cookie-session) 
@@ -57,13 +57,16 @@ session : 서버의 사용자별로 할당되는 공간, 사용자를 식별하�
 	
 	-그다음으로 많이쓰임
 (session의 타입 : HttpSession)
-	
+(세션은 인스턴스 변수라고 생각함됨)	
 	
 	
 application : 서버 메모리에 할당되는 공간, 서버에 하나만 존재하는 공간
 			  web.xml에 설정한 초기화 파라미터 정보를 얻어올 수 있음
 (application의 타입 : servletContext)			  
+(얘는 static변수라고 생각함됨)
 			  
+이 용어들은 잘 알아둬야함!!!!! 타입이 뭐고 이런거.    
+   
 
 위에 4가지는 scope가 서버인데 소멸시점이 각각 다 다름
 

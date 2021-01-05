@@ -9,35 +9,53 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
-  <!-- servlet 등록, 해당 서블릿에서 처리를 할 url 등록 -->
   <servlet>
-  	<servlet-name>basicServlet</servlet-name>
-  	<servlet-class>kr.or.ddit.servlet.basic.BasicServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+    <servlet-name>basicServlet</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.basic.BasicServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
-  
-  <!-- servlet에서 처리할 url 매핑 -->
   <servlet-mapping>
-  	<servlet-name>basicServlet</servlet-name>
-  	<url-pattern>/basicServlet</url-pattern>
+    <servlet-name>basicServlet</servlet-name>
+    <url-pattern>/basicServlet</url-pattern>
   </servlet-mapping>
-  
-  
-  
   <servlet>
-  	<servlet-name>TimesTablesServlet</servlet-name>
-  	<servlet-class>kr.or.ddit.servlet.basic.BasicServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+    <servlet-name>TimesTablesServlet</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.basic.BasicServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>TimesTablesServlet</servlet-name>
-  	<url-pattern>/TimesTablesServlet</url-pattern>
+    <servlet-name>TimesTablesServlet</servlet-name>
+    <url-pattern>/TimesTablesServlet</url-pattern>
   </servlet-mapping>
-  
-  
-   
+  <servlet>
+    <description></description>
+    <display-name>Scope</display-name>
+    <servlet-name>Scope</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.scope.Scope</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Scope</servlet-name>
+    <url-pattern>/Scope</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>test</display-name>
+    <servlet-name>test</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.scope.test</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SumCalculation</display-name>
+    <servlet-name>SumCalculation</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.scope.SumCalculation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SumCalculation</servlet-name>
+    <url-pattern>/SumCalculation</url-pattern>
+  </servlet-mapping>
   
 </web-app>
