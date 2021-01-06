@@ -40,3 +40,17 @@
  		- 실행우선순위가 예외타입(exception이라고 적어준 예외가 더 구체적이니까)이 더 높다
  		
  		
+ 		
+COOKIE 확인
+	1. 개발자 도구
+	2. script에서
+	   document.cookie 검색하면 쿠키들 쫙 나옴
+
+Cookie 구성
+쿠키이름=쿠키값; 쿠키이름2=쿠키값2;	쿠키이름3=쿠키값3   
+(마지막엔 ; 안붙음)
+
+툭정 쿠키의 값을 확인하려면??
+ 	==> document.cookie 이걸 이용해서 parsing해야함
+userid=brown; rememberme=Y; test=t 	
+ 		
