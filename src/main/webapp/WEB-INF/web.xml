@@ -57,32 +57,31 @@
     <servlet-name>SumCalculation</servlet-name>
     <url-pattern>/SumCalculation</url-pattern>
   </servlet-mapping>
-  
   <error-page>
-  	<!-- class full name : 패키지.클래스명 -->
-  	<exception-type>java.lang.ArithmeticException</exception-type>
-  	<location>/error/type/ariError.jsp</location>
-  </error-page>
-  
-  <error-page>
-  	<!-- class full name : 패키지.클래스명 -->
-  	<exception-type>java.lang.RuntimeException</exception-type>
-  	<location>/error/type/runError.jsp</location>
-  </error-page>
-  
-  
-  <!-- error page 설정 -->
-  <error-page>
-  	<error-code>404</error-code>
-  	<location>/error/404/404.jsp</location>
+    <exception-type>java.lang.ArithmeticException</exception-type>
+    <location>/error/type/ariError.jsp</location>
   </error-page>
   <error-page>
-  	<error-code>500</error-code>
-  	<location>/error/500/500.html</location>
+    <exception-type>java.lang.RuntimeException</exception-type>
+    <location>/error/type/runError.jsp</location>
   </error-page>
-  
-  
-  
-  
-  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/404/404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/500/500.html</location>
+  </error-page>
+  <servlet>
+    <description></description>
+    <display-name>AllEmp</display-name>
+    <servlet-name>AllEmp</servlet-name>
+    <servlet-class>kr.or.ddit.user.controller.AllEmp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllEmp</servlet-name>
+    <url-pattern>/allEmp</url-pattern>
+  </servlet-mapping>
+ 
 </web-app>

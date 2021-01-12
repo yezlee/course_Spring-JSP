@@ -10,12 +10,17 @@ import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.UserService;
+import kr.or.ddit.user.service.UserServiceI;
 
 
 // web.xml에 설정하는 servlet, servlet-mapping을 어노테이션을 통해 설정하는 방법
@@ -26,13 +31,29 @@ public class LoginController extends HttpServlet{
 	//사용자가 get으로 보내든, post로 보내든 상관없이 하려면
 	// ==> service로!!!!(근데 일반적이진 않아)
 	
-	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
+	private UserServiceI userService = new UserService();
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//파일이름을 사용자가 알기위해서 request객체를 사용한다
 		//req.getHeaderNames();
+		
+		
+		//쿠키정보확인
+		//클라이언트가 서버로 요청을 보낼시 브라우저에 의해 같이 전송된 쿠키정보확인
+		//이게 지금 서버에서 쿠키를 저장한거. 클라이언트쪽에서 아이디 저장하고 하는걸(조작) 서버쪽에서도 똑같이 할 수 있다.
+		Cookie[] cookies = req.getCookies();
+		for(Cookie cookie : cookies) {
+			logger.debug("cookie.getName() : {} / cookie.getValue() : {} ", cookie.getName(), cookie.getValue());
+			
+			if(cookie.getName().equals("userid")) {
+				Cookie newServerCookie = new Cookie("newServerCookie", "testValue");
+				resp.addCookie(newServerCookie);
+			}
+		}
 		
 		
 		// 사용자가 userid, pass 파라미터를 전송했다고 가정하고 개발을 하는거야
@@ -110,27 +131,21 @@ public class LoginController extends HttpServlet{
 		String userid = req.getParameter("userid");
 		String pass = req.getParameter("pass");
 		
-		//로그인성공
-		if(userid.equals("brown") && pass.equals("brownpass")) {
+		UserVo user = userService.selectUser(userid);
+		
+		
+		//로그인성공 ==> service를 통해 데이터베이스에 저장된 값과 일치할 때
+		// session에 데이터베이스에서 조회한 사용자 정보(userVo)를 저장
+		if(user != null && pass.equals(user.getPass())) {
 		    RequestDispatcher rd = req.getRequestDispatcher("/main.jsp");
 		    rd.forward(req, resp);
 		}
+		//실패하면 널이 들어감. 그래서 널이 아닐때
 		
 		//로그인실패
 		else {
 			resp.sendRedirect(req.getContextPath() + "/login.jsp");
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
