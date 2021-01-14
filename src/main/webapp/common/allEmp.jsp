@@ -1,7 +1,6 @@
 <%@page import="kr.or.ddit.user.model.EmpVo"%>
-<%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,16 +22,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li class="active"><a href="<%=request.getContextPath()%>/main.jsp">Main<span class="sr-only">(current)</span></a></li>
-					<li class="active"><a href="<%=request.getContextPath()%>/allUser">전체사용자</a></li>
-					<li class="active"><a href="<%=request.getContextPath()%>/allEmp">직원</a></li>
-				</ul>
+				<%@ include file="/common/left.jsp"%>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">직원</h2>
+						<h2 class="sub-header">직원</h2>
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
@@ -65,8 +60,7 @@
 							</table>
 						</div>
 
-						<a class="btn btn-default pull-right">글쓰기</a>
-
+						<a class="btn btn-default pull-right">글쓰기</a>
 						<div class="text-center">
 							<ul class="pagination">
 								<li><a href="#">1</a></li>

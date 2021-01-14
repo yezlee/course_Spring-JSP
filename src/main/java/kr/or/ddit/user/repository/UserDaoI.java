@@ -26,5 +26,16 @@ public interface UserDaoI {
 	//사용자 전체 수 조회
 	int selectAllUserCnt();
 	
+	//사용자 정보 수정
+	int modifyUser(UserVo userVo);
+//	int modifyUser(String usernm, ....); 이런식으로 하면 변경이 있을때마다 계속 수정을 해줘야해. 안정적이지 않아.
+	
+	
+	//사용자등록
+	int insertUser(UserVo userVo);
+
+	//사용자삭제
+	int deleteUser(String userid);
+	
 	
 }

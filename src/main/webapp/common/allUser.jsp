@@ -1,12 +1,10 @@
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <% List<UserVo> userList = (List<UserVo>)request.getAttribute("userList");  %>
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,18 +12,12 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-
 <title>Jsp</title>
-
 <%@ include file="/common/common_lib.jsp"%>
 <link href="<%=request.getContextPath()%>/css/dashboard.css"
 	rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
-
-
-
 </head>
-
 <body>
 
 	<%@ include file="/common/header.jsp"%>
@@ -34,11 +26,7 @@
 		<div class="row">
 
 			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li class="active"><a href="<%=request.getContextPath()%>/main.jsp">Main<span class="sr-only">(current)</span></a></li>
-					<li class="active"><a href="<%=request.getContextPath()%>/allUser">전체사용자</a></li>
-					<li class="active"><a href="<%=request.getContextPath()%>/allEmp">직원</a></li>
-				</ul>
+				<%@ include file="/common/left.jsp"%>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 

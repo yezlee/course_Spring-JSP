@@ -104,6 +104,8 @@ public class PagingUser extends HttpServlet {
 				
 		request.setAttribute("userList", userList);
 		request.setAttribute("pagination", pagination);
+		request.setAttribute("pageVo", vo); //내가 어디페이지에 있는지 알기 위해 추가
+		
 		
 		//req.getRequestDispatcher("/user/allUser.jsp").forward(req, resp);
 		request.getRequestDispatcher("user/pagingUser.jsp").forward(request, response);
