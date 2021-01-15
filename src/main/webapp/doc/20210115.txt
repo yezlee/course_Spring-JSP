@@ -1,0 +1,68 @@
+model1 : 요청을 jsp가 접수, 응답도 jsp에서 생성
+		 비즈니스 로직(model)이 jsp(view)안에서 호출됨
+		 만약 다른 jsp(view)에서도 동일한 비즈니스 로직(model)을 사용할 경우
+		 비즈니스 로직의 변경시 많은 코드 수정이 동반된다 ==> 유지보수의 어려움
+model2 : 알아서 정리
+
+MVC패턴 : Model - View - Controller
+		 각 역할을 담당하는 객체를 분리
+		 Controller : 요청을 접수, 비즈니스 로직을 호출 및 저장(scope)
+		 Model : 비즈니스 로직 처리
+		 View :	화면 출력을 담당
+		 
+		 model1과 다르게 view와 model을 분리
+		 view에서 필요한 데이터는 scope 객체를 통해 받는다.
+		 
+ Front Controller : 모든 요청을 하나의 객체가 접수 받는 형태
+ 					장점 : ??
+ 					
+디자인 패턴은 나중에 내가 깨우쳐서 쓰는거지.
+달달 외우고 그렇게 쓰는건 비추.
+
+POJO 이게 뭔지 알아두기. 나중에 스프링배울때도 많이 쓰는? 단어임.
+
+-----
+이제 새로운거.
+
+표현언어(EL - Expression Language). (우리가 표현식(=기호가 들어가는게)은 배움)
+
+서블릿이랑 jsp가 자바 EE임
+
+뭐가 톰캣이고 이건 최상위.
+java persistence api - 해외에서 많이씀 .sql문을 쓰지않아도 되고??
+
+
+EL을 쓰는 이유는, 표현식을 보다 쉽고 간결하게 하기 위해서. 그렇게 사용할수 있는 표현 방법임.
+
+jstl - Java Standard Tag Library 
+$하는게 EL
+
+jsp 기본객체를 확인하는 방법을 어떻게 검색하는지? 숙제
+- jsp를 쓰는 거를 통해서?
+
+EL 기본객체
+- 영역명을 사용하지 않은경우 -> page -> request -> session -> applicarion 영역을 차례대로 검색
+
+EL자체가 속성을 위주로 다룸
+pageContext는 jsp기본객체 pageContext와 동일함!@
+
+
+getContextPath()를 날려버리려면 request객체를 대체할 애가 필요한데 그게 없어 el에는 근데
+
+pageContext : 4개의 scope에 접근할 수 있는 객체
+(scope객체임)   
+	- pageContext 소멸시점 : ...?????
+				  
+			  getAttribute, setAttribute,
+			  findAttribute() (pageContext=>request=>session=>application) 이 순으로 찾는다
+			  
+			  jsp에 선언된 다른 내장객체를 관리할 수있다.
+			  getPage(), getRequest(), getSession(), getServletContext()
+
+===> 이게 있음. 그래서 pageContext를 쓰는거(기억하자)
+
+
+			  
+			  
+ 
+ 					
