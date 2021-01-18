@@ -34,7 +34,7 @@ java persistence api - 해외에서 많이씀 .sql문을 쓰지않아도 되고?
 
 EL을 쓰는 이유는, 표현식을 보다 쉽고 간결하게 하기 위해서. 그렇게 사용할수 있는 표현 방법임.
 
-jstl - Java Standard Tag Library 
+jstl - Jsp Standard Tag Library 
 $하는게 EL
 
 jsp 기본객체를 확인하는 방법을 어떻게 검색하는지? 숙제
@@ -60,6 +60,26 @@ pageContext : 4개의 scope에 접근할 수 있는 객체
 			  getPage(), getRequest(), getSession(), getServletContext()
 
 ===> 이게 있음. 그래서 pageContext를 쓰는거(기억하자)
+
+<h3>map - EL</h3>
+	map : ${map}<br>
+	map.get("userid") : ${map.userid} <br>
+	${map.userid}에 대한 해석은 el이 알아서 해준다.(평가를 해. do evaluation) 필드를
+	
+	evl?
+	인자를 평가한다. 
+	
+	
+	JSTL - 표준태그 라이브러리.
+	
+	사용법(문법)
+	문법에도 집중적으로 쓰이는게 있고 아닌게 있다.
+	
+	 
+	
+core 는 로직처리할때 흐름제어할때
+국제화는 독일돈 . 찍는거 다르고, 날짜처리하고 그럴때
+
 
 
 			  

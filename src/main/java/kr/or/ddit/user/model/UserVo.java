@@ -137,6 +137,13 @@ public class UserVo {
 	public void setRealfilename(String realfilename) {
 		this.realfilename = realfilename;
 	}
+
+	@Override
+	public String toString() {
+		return "UserVo [userid=" + userid + ", usernm=" + usernm + ", pass=" + pass + ", reg_dt=" + reg_dt + ", alias="
+				+ alias + ", addr1=" + addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", filename=" + filename
+				+ ", realfilename=" + realfilename + "]";
+	}
 	
 	
 	
