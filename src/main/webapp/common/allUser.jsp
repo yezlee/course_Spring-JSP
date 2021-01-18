@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 <% List<UserVo> userList = (List<UserVo>)request.getAttribute("userList");  %>
@@ -14,9 +15,9 @@
 <meta name="author" content="">
 <title>Jsp</title>
 <%@ include file="/common/common_lib.jsp"%>
-<link href="<%=request.getContextPath()%>/css/dashboard.css"
+<link href="${pageContext.request.contextPath}/css/dashboard.css"
 	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
 </head>
 <body>
 
@@ -42,6 +43,19 @@
 									<th>사용자 별명</th>
 									<th>등록일시</th>
 								</tr>
+								
+								<c:forEach items="${userList}" var="user">
+									<tr>
+										<td>${user.userid}</td>
+										<td>${user.usernm}</td>
+										<td>${user.alias}</td>
+										<td>${user.reg_dt_fmt}</td>
+									</tr>
+								</c:forEach>
+								
+								
+<%-- 								
+								
 								<% 
 									for(int i=0; i<userList.size(); i++ ){
 									/* for(UserVo user : (List<UserVo>)request.getAttribute("userList")){ */	
@@ -53,12 +67,15 @@
 										<td><%=userList.get(i).getReg_dt_fmt() %></td>
 										<!-- getReg_dt_fmt() 메소드를 만들어서 여기서 데이터 포맷을 해줌. 
 										널포인터가 나오니까 널값이 나오면  ""를 반환하도록 UserVo.java에서 코드를 추가함 -->
-										<%-- <td><%=sdf.format(userList.get(i).getReg_dt()) %></td> --%>
+										<td><%=sdf.format(userList.get(i).getReg_dt()) %></td>
 									</tr>
 								<%
 																		
 									}
 								%>
+								
+--%>
+								
 							</table>
 						</div>
 

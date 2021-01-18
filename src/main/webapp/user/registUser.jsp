@@ -18,8 +18,8 @@
 
 <!-- Bootstrap core CSS -->
 <%@include file="/common/common_lib.jsp"%>
-<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -116,14 +116,32 @@
 		<div class="row">
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			
-				<form method="post" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/registUser">
+				<form method="post" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/registUser">
+					
+					<!-- pageContext.getRequest.contextPath 이걸 EL을 쓰면 
+					
+					<%-- action="${pageContext.request.contextPath} --%> 이거를 
+					
+					action="${pageContext.request.contextPath} 이렇게 바꿈. 
+					그래서 web module에서 /를 /jsp로 바꿔줬을때 에러뜨지않고 알아서 잘 경로를 찾음.
+					그말인 즉슨 잘 적용이 되었다는거! 
+					
+					-->
 					
 					<div class="form-group">
 						<label for="userid" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
 <%-- 						<% String userid = request.getParameter("userid");
 							userid = userid == null ? "" : userid; %>
- --%>						<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디를 입력하세요." <%-- value="<%=userid%> --%>">
+							
+							이걸 했던 이유는, 등록폼이 진짜 처음 사용자 등록할때랑/ 사용자등록을 실패했을때 그 입력값을 불러오기 위해 쓰이는 두가지 용도로 사용되는데,
+							널처리를 안해주고 value값에 그냥 바로 getParameter해버리면 최초 사용자 등록할때도 널값이 뜬다.
+							그게 보기 싫으니까 위에 삼항연산자를 써서 널처리를 해결한건데
+							그거 때문에 두줄이나 길어지니까 그게 보기 싫어서 EL을 쓰는거지. EL을 쓰는 이유를 다시한번 상기.
+							
+ --%>						<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디를 입력하세요." 
+ 							<%-- value="<%=userid%> 이렇게 했었는데, 위에 제이쿼리로 해서 이거 안써도 됨
+ 								근데 el로도 표현 가능함. value="${param.userid}"	 --%> >
 						</div>
 					</div>
 

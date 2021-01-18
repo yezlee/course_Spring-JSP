@@ -1,0 +1,80 @@
+EL, JSTL을 쓰는 이유는
+==> 표현식, 스크립틀릿을 걷어내기 위함.
+==> JSP파일을 최대한 태그처럼 보이게 하기 위함.
+	(자바코드를 걷어낸다.)
+
+	
+	
+	
+JSTL 태그 라이브러리 사용방법 - 지시자 <%@ %>
+1. taglib 지시자를 선언
+==> <%@ taglib prefix="네임스페이스(패키지같은거), 개발자가 맘대로 이름 정해도됨, 근데 사람들이 많이쓰는 프리픽스가 있음. 즉 관습적으로 많이 사용하는 프리픽스가 있으니 그거 따르자" uri ="사용하려고 하는 태그의 식별자" %>
+
+core 태그 라이브러리 : 의 관습적 프리픽스는 c
+국제화 태그 라이브러리 : fmt
+
+
+
+
+CORE tag 라이브러리
+속성저장
+request.setAttribute("속성명", 속성값);
+session.setAttribute("속성명", 속성값);
+
+EL 사용시 null값 처리를 자동으로 함 ==> registUser.jsp에서 널처리하기위해 쓴 삼항연산자를 EL을 사용하여 간소화 작업. (나는 제이쿼리를 써서 처리해놨기때문에 안함)
+
+<%=request.getContextPath()%> ==> ${pageContext.request.contextPath}
+
+
+${pageContext.} - 이건 거의 안쓰고
+${param.} - 이건 드물게 쓰고
+${속성명} - 이걸 주로 쓰고
+		
+XXXX ${request.} XXXXX ==> 이렇게 하면 안됨!!!!!!!!!!!!!!!!! 
+==> EL에선  request를 지원해주지 않아!!!!!!!!  pageContext에서 리퀘스트 해야함
+
+
+
+
+JSTL CORE 조건 제어(java if)
+
+if ==> 자바의 단일 if  
+choose ==> 자바의 if, else if, else
+
+
+
+JSTL 반복문(for, 향상된for문) ************* 짱짱중요 정말 많이씀
+forEach
+
+
+
+JSTL core URL
+import : 특정 url에서 반환하는 값(html)을 호출하는 곳에 추가하는 기
+redirect : 클라이언트에게 다른 url로 재전송 요청
+url : url 경로 작성
+
+JSTL core 기타
+catch
+out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

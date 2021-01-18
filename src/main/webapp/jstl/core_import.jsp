@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/scope" method="post">
-		<label for="scopeid">SCOPE</label>
-		<input type="text" name="scope" id="scopeid">
-		<button type="submit">CLICK</button>
-	</form>
+	<c:import url="https://search.naver.com/search.naver">
+		<c:param name="query" value="신규확진 389명"></c:param>
+	</c:import>
 </body>
 </html>
