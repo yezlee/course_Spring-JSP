@@ -24,7 +24,7 @@ public class AllUser extends HttpServlet {
 		List<UserVo> userList = service.selectAllUsers();
 		
 		request.setAttribute("userList", userList);
-		request.getRequestDispatcher("/common/allUser.jsp").forward(request, response);
+		request.getRequestDispatcher(request.getContextPath()+"/user/allUser.jsp").forward(request, response);
 		
 	}
 

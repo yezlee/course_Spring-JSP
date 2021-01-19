@@ -1,11 +1,14 @@
-<%@ page import="kr.or.ddit.common.model.PageVo"%>
-<%@ page import="kr.or.ddit.user.model.UserVo"%>
-<%@ page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@page import="kr.or.ddit.common.model.PageVo"%>
+<%@page import="kr.or.ddit.user.model.UserVo"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<%
+	List<UserVo> userList = (List<UserVo>)request.getAttribute("userList");
+%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,8 +23,8 @@
 <!-- <link href="bootstrap.css" rel="stylesheet"> -->
 <!-- Bootstrap core CSS -->
 <!-- <script src="bootstrap.js"></script>Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
 
 <script type="text/javascript">
 	//문서 로딩이 완료되고 나서 실행되는 영역
@@ -49,7 +52,7 @@
 
 <body>
 
-	<form id="frm" action="${pageContext.request.contextPath}/user">
+	<form id="frm" action="<%=request.getContextPath()%>/user">
 		<input type="hidden" id="userid" name="userid" value=""/>
 	</form>
 
@@ -97,23 +100,33 @@
 									<th>사용자 별명</th>
 									<th>등록일시</th>
 								</tr>
-								
-								<c:if test="${userList != null }">
-									<c:forEach items="${userList}" var="user">
-										<tr class="user" data-userid="${user.userid}">
-											<td>${user.userid}</td>
-											<td>${user.usernm}</td>
-											<td>${user.alias}</td>
-											<td>${user.reg_dt_fmt}</td>
-										</tr>
-									</c:forEach>	
-								</c:if>
+				<%
+					/* SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd"); */
+					if(userList!=null){
+						for(int i = 0; i<userList.size(); i++){
+							UserVo vo = userList.get(i);
+				%>
+								<tr class="user" data-userid="<%=vo.getUserid() %>">
+									<td><%=vo.getUserid() %></td>
+									<td><%=vo.getUsernm() %></td>
+									<td><%=vo.getAlias() %></td>
+									<td><%=vo.getReg_dt_fmt() %></td>									
+								</tr>
+								<%
+						}
+					}
+				%>
 							</table>
 						</div>
 
-						<a href="${pageContext.request.contextPath}/user/registUser.jsp" class="btn btn-default pull-right">사용자 등록</a>
+						<a href="/user/registUser.jsp" class="btn btn-default pull-right">사용자 등록</a>
 
 						<div class="text-center">
+							request.getAttribute("pageVo") :
+							<%=((PageVo)request.getAttribute("pageVo")).getPage() %>
+
+
+
 							<ul class="pagination">
 
 								<!-- 
@@ -122,25 +135,35 @@
 									페이지 사이즈 : 5
 									전체 페이지수 : 4페이지
 								 -->
-								
-								<li class="prev">
-									<a href="${pageContext.request.contextPath}/pagingUser?page=1&pageSize=${pageVo.pageSize}">«</a>
+								<% 
+							/* int cur_page = ((PageVo)request.getAttribute("pageVo")).getPage(); */
+							PageVo cur_page = (PageVo)request.getAttribute("pageVo");
+							int pagenation = (Integer)request.getAttribute("pagination"); %>
+
+								<li class="prev"><a
+									href="<%=request.getContextPath()%>/pagingUser?page=1&pageSize=<%=cur_page.getPageSize()%>">«</a>
 								</li>
-								<c:forEach begin="1" end="${pagination}" var="i">
-									<c:choose>
-										<c:when test="${cur.page == i}">
-											<li class="active"><span>${i}</span></li>
-										</c:when>
-										<c:otherwise>
-											<li>
-												<a href="${pageContext.request.contextPath}/pagingUser?page=${i}&pageSize=${pageVo.pageSize}">${i}</a>
-											</li>	
-										</c:otherwise>
-									</c:choose>								
-								</c:forEach>		
-								<li class="next">
-									<a href="${pageContext.request.contextPath}/pagingUser?page=${pagination}&pageSize=${pageVo.pageSize}">»</a>
+
+								<%for(int i=1; i<=(int)request.getAttribute("pagination"); i++ ){%>
+								<% if(i == cur_page.getPage()){%>
+								<!-- 만약에 int로 받으면 그냥 i==cur.page라고 하면 되는데 -->
+								<li class="active"><span><%=i%></span></li>
+								<% }else{%>
+								<li><a
+									href="<%=request.getContextPath()%>/pagingUser?page=<%=i%>&pageSize=<%=cur_page.getPageSize()%>"><%=i%></a></li>
+								<% }%>
+								<% }%>
+
+								<li class="prev"><a
+									href="<%=request.getContextPath()%>/pagingUser?page=<%=pagenation%>&pageSize=<%=cur_page.getPageSize()%>">»</a>
 								</li>
+								<%-- 
+				
+									<li><a href="<%=request.getContextPath()%>/pagingUser?page=2&pageSize=5">2</a></li>
+									<li><a href="<%=request.getContextPath()%>/pagingUser?page=3&pageSize=5">3</a></li>
+									<li><a href="<%=request.getContextPath()%>/pagingUser?page=4&pageSize=5">4</a></li>
+									<li><a href="<%=request.getContextPath()%>/pagingUser?page=5&pageSize=5">5</a></li>
+								 --%>
 							</ul>
 						</div>
 					</div>
