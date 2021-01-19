@@ -21,8 +21,8 @@
 <!-- <link href="bootstrap.css" rel="stylesheet"> -->
 <!-- Bootstrap core CSS -->
 <!-- <script src="bootstrap.js"></script>Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="${cp}/css/dashboard.css" rel="stylesheet">
+<link href="${cp}/css/blog.css" rel="stylesheet">
 
 <script type="text/javascript">
 	//문서 로딩이 완료되고 나서 실행되는 영역
@@ -50,7 +50,7 @@
 
 <body>
 
-	<form id="frm" action="${pageContext.request.contextPath}/user">
+	<form id="frm" action="${cp}/user">
 		<input type="hidden" id="userid" name="userid" value=""/>
 	</form>
 
@@ -87,7 +87,7 @@
 							</table>
 						</div>
 
-						<a href="${pageContext.request.contextPath}/user/registUser.jsp" class="btn btn-default pull-right">사용자 등록</a>
+						<a href="${cp}/user/registUser.jsp" class="btn btn-default pull-right">사용자 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination">
@@ -100,7 +100,7 @@
 								 -->
 								
 								<li class="prev">
-									<a href="${pageContext.request.contextPath}/pagingUser?page=1&pageSize=${pageVo.pageSize}">«</a>
+									<a href="${cp}/pagingUser?page=1&pageSize=${pageVo.pageSize}">«</a>
 								</li>
 								<c:forEach begin="1" end="${pagination}" var="i">
 									<c:choose>
@@ -109,13 +109,13 @@
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href="${pageContext.request.contextPath}/pagingUser?page=${i}&pageSize=${pageVo.pageSize}">${i}</a>
+												<a href="${cp}/pagingUser?page=${i}&pageSize=${pageVo.pageSize}">${i}</a>
 											</li>	
 										</c:otherwise>
 									</c:choose>								
 								</c:forEach>		
 								<li class="next">
-									<a href="${pageContext.request.contextPath}/pagingUser?page=${pagination}&pageSize=${pageVo.pageSize}">»</a>
+									<a href="${cp}/pagingUser?page=${pagination}&pageSize=${pageVo.pageSize}">»</a>
 								</li>
 							</ul>
 						</div>

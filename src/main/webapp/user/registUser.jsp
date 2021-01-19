@@ -18,8 +18,8 @@
 
 <!-- Bootstrap core CSS -->
 <%@include file="/common/common_lib.jsp"%>
-<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="${cp}/css/dashboard.css" rel="stylesheet">
+<link href="${cp}/css/blog.css" rel="stylesheet">
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -116,13 +116,13 @@
 		<div class="row">
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			
-				<form method="post" class="form-horizontal" role="form" action="${pageContext.request.contextPath}/registUser">
+				<form method="post" class="form-horizontal" role="form" action="${cp}/registUser">
 					
 					<!-- pageContext.getRequest.contextPath 이걸 EL을 쓰면 
 					
-					<%-- action="${pageContext.request.contextPath} --%> 이거를 
+					<%-- action="${cp} --%> 이거를 
 					
-					action="${pageContext.request.contextPath} 이렇게 바꿈. 
+					action="${cp} 이렇게 바꿈. 
 					그래서 web module에서 /를 /jsp로 바꿔줬을때 에러뜨지않고 알아서 잘 경로를 찾음.
 					그말인 즉슨 잘 적용이 되었다는거! 
 					

@@ -19,8 +19,8 @@
 
 <!-- Bootstrap core CSS -->
 <%@include file="/common/common_lib.jsp"%>
-<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="${cp}/css/dashboard.css" rel="stylesheet">
+<link href="${cp}/css/blog.css" rel="stylesheet">
 
 <script>
 /* 	사용자 수정 : 메소드가 get이어야하고 - 수정화면 띄우는거 자체는 겟이지 - action = /userModify
@@ -31,13 +31,13 @@
 	$(function(){
 		$("#modifyBtn").on("click", function(){
 			$("#frm").attr("method", "get");
-			$("#frm").attr("action", "${pageContext.request.contextPath}/userModify");
+			$("#frm").attr("action", "${cp}/userModify");
 			$("#frm").submit();
 		});
 		
 		$("#deleteBtn").on("click", function(){
 			$("#frm").attr("method", "post");
-			$("#frm").attr("action", "${pageContext.request.contextPath}/deleteUser");
+			$("#frm").attr("action", "${cp}/deleteUser");
 			$("#frm").submit();
 		});
 	})
@@ -91,13 +91,13 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 			
-				<form class="form-horizontal" id="frm" role="form" action="${pageContext.request.contextPath}/userModify">
+				<form class="form-horizontal" id="frm" role="form" action="${cp}/userModify">
 					<input type="hidden" name="userid" value="${user.userid}">
 					
 					<div class="form-group">
 						<label class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
-							<img src="${pageContext.request.contextPath}/profile/${user.userid}.png">
+							<img src="${cp}/profile/${user.userid}.png">
 						</div>
 					</div>
 					

@@ -17,7 +17,7 @@
     제목에 **이렇게 붙이고 실행함으로써 확인할수있어. 그리고 다시 **지우면 됨
     
     <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="${cp}/css/bootstrap.min.css" rel="stylesheet"> 
 	이 링크태그를 아래 include에 따라가면 있는 jsp파일에 넣어놓음
 	그래서 주석처리    
 --%>
@@ -28,7 +28,7 @@
 	<!-- https://github.com/js-cookie/js-cookie 요기서 가져온 스크립트-->
 	
     <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath}/css/signin.css" rel="stylesheet">
+    <link href="${cp}/css/signin.css" rel="stylesheet">
     
     <script>
     	function getCookieValue(cookieStr, cookieName){
@@ -117,8 +117,10 @@
   <body>
 
     <div class="container">
-		UNT_CD : ${param.UNT_CD} / <%=request.getParameter("UNT_CD")%>
-      <form class="form-signin" id="frm" action="${pageContext.request.contextPath}/loginController" method="POST">
+		<%-- UNT_CD : ${param.UNT_CD} / <%=request.getParameter("UNT_CD")%> --%>
+		cp : ${cp} / <%=application.getAttribute("cp") %>
+		
+      <form class="form-signin" id="frm" action="${cp}/loginController" method="POST">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="userid" class="sr-only">userid</label>
         <input type="text" id="userid" name="userid" class="form-control" placeholder="Enter Id" required autofocus>

@@ -18,9 +18,9 @@
 
 
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/dashboard.css"
+<link href="${cp}/css/dashboard.css"
 	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="${cp}/css/blog.css" rel="stylesheet">
 </head>
 
 <body>

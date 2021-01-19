@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${cp}/scope" method="post">
-		<label for="scopeid">SCOPE</label>
-		<input type="text" name="scope" id="scopeid">
-		<button type="submit">CLICK</button>
-	</form>
+	User Set : ${USER_SET}
 </body>
 </html>

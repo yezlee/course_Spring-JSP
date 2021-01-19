@@ -80,7 +80,7 @@
 									<td><%=vo.getUserid() %></td>
 									<td><%=vo.getUsernm() %></td>
 									<td><%=vo.getAlias() %></td>
-									<td><%=vo.getReg_dt_fmt() %></td>
+<%-- 									<td><%=vo.getReg_dt_fmt() %></td> --%>
 									<%-- <%if(vo.getReg_dt()!=null) {%>
 										<td><%=sdf.format(vo.getReg_dt()) %></td>
 									<%}else{ %>

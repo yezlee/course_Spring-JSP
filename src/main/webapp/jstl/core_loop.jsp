@@ -84,7 +84,7 @@
 	<br>
 	<h3>url 작성</h3>
 	<a href="<c:url value="/registUser"/>">사용자등록</a>
-	<a href="${pageContext.request.contextPath}">사용자등록</a>
+	<a href="${cp}">사용자등록</a>
 	<a href="${cp}/registUser">사용자등록</a>
 	
 	
