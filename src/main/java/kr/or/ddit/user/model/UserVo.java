@@ -28,7 +28,7 @@ public class UserVo {
 	//UserVo userVo = new UserVo("ddit", "대덕인재", "dditpass", new Date(), "개발원_m", "대전시 중구 중앙로 76", "4층 대덕인재개발원", "34940");
 	//new해서 이렇게 한건 객체 생성. 이제 위에거가 메모리에 올라가는거지
 	public UserVo(String userid, String usernm, String pass, Date reg_dt, String alias, String addr1,
-			String addr2, String zipcode) {
+			String addr2, String zipcode, String filename, String realfilename) {
 		this.userid = userid;
 		this.usernm = usernm;
 		this.pass = pass;
@@ -37,6 +37,8 @@ public class UserVo {
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.zipcode = zipcode;
+		this.filename = filename;
+		this.realfilename = realfilename;
 	}
 
 

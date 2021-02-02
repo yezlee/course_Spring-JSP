@@ -74,8 +74,7 @@
 									<th>등록일시</th>
 								</tr>
 								
-								<c:if test="${userList != null }">
-									<c:forEach items="${userList}" var="user">
+									<c:forEach items="${userList }" var="user">
 										<tr class="user" data-userid="${user.userid}">
 											<td>${user.userid}</td>
 											<td>${user.usernm}</td>
@@ -83,7 +82,6 @@
 											<td><fmt:formatDate value="${user.reg_dt}" pattern="yyyy-MM-dd"/></td>
 										</tr>
 									</c:forEach>	
-								</c:if>
 							</table>
 						</div>
 
@@ -99,24 +97,20 @@
 									전체 페이지수 : 4페이지
 								 -->
 								
-								<li class="prev">
-									<a href="${cp}/pagingUser?page=1&pageSize=${pageVo.pageSize}">«</a>
-								</li>
+								<li class="prev"><a href="${cp}/pagingUser?page=1&pageSize=${pageVo.pageSize}">«</a></li>
+								
 								<c:forEach begin="1" end="${pagination}" var="i">
 									<c:choose>
 										<c:when test="${cur.page == i}">
 											<li class="active"><span>${i}</span></li>
 										</c:when>
 										<c:otherwise>
-											<li>
-												<a href="${cp}/pagingUser?page=${i}&pageSize=${pageVo.pageSize}">${i}</a>
-											</li>	
+											<li><a href="${cp}/pagingUser?page=${i}&pageSize=${pageVo.pageSize}">${i}</a></li>	
 										</c:otherwise>
 									</c:choose>								
-								</c:forEach>		
-								<li class="next">
-									<a href="${cp}/pagingUser?page=${pagination}&pageSize=${pageVo.pageSize}">»</a>
-								</li>
+								</c:forEach>	
+									
+								<li class="next"><a href="${cp}/pagingUser?page=${pagination}&pageSize=${pageVo.pageSize}">»</a></li>
 							</ul>
 						</div>
 					</div>

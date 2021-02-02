@@ -36,6 +36,14 @@ public class LoginController extends HttpServlet{
 	
 	private UserServiceI userService = new UserService();
 	
+	//웹브라우저 : localhost/login.jsp ==> 이건 model1 / 모델2는 서블릿으로 요청하는거
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/login.jsp").forward(req, resp);
+	}
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -22,7 +22,7 @@ public class UserDaoTest {
 		userDao = new UserDao();
 				
 		//테스트에서 사용할 신규 사용자 추가
-		UserVo userVo = new UserVo("testUser", "테스트사용자", "testUserPass", new Date(), "대덕", "대전 중구 중앙로 76", "4층", "34940");
+		UserVo userVo = new UserVo("testUser", "테스트사용자", "testUserPass", new Date(), "대덕", "대전 중구 중앙로 76", "4층", "34940","brown.png","uuid");
 		
 		//userDao.deleteUser("testUser"); //항상 한번만 입력이 되게끔. 이걸 @After에 해도됨
 		userDao.insertUser(userVo);
@@ -106,7 +106,7 @@ public class UserDaoTest {
 		
 		//userid, usernm, pass, reg_dt, alias, addr1, addr2, zipcode
 		//UserVo userVo = new UserVo(); 이렇게만 썼다가 생성자 만들려고 아래 다시
-		UserVo userVo = new UserVo("ddit", "대덕인재", "dditpass", new Date(), "개발원_m", "대전시 중구 중앙로 76", "4층 대덕인재개발원", "34940");
+		UserVo userVo = new UserVo("ddit", "대덕인재", "dditpass", new Date(), "개발원_m", "대전시 중구 중앙로 76", "4층 대덕인재개발원", "34940","brown.png","uuid");
 		//여기에 8개 다 추가하기 손이 많이가니까 위에 생성자를 만들어주자
 		
 		
@@ -128,7 +128,7 @@ public class UserDaoTest {
 		/***Given***/
 //		UserDaoI userDao = new UserDao();
 		
-		UserVo userVo = new UserVo("ddit_n", "대덕인재", "dditpass", new Date(), "개발원_m", "대전시 중구 중앙로 76", "4층 대덕인재개발원", "34940");
+		UserVo userVo = new UserVo("ddit_n", "대덕인재", "dditpass", new Date(), "개발원_m", "대전시 중구 중앙로 76", "4층 대덕인재개발원", "34940","brown.png","uuid");
 
 		/***When***/
 		int insertCnt = userDao.insertUser(userVo); 

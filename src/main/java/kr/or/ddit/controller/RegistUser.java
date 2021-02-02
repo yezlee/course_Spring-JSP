@@ -1,15 +1,16 @@
 package kr.or.ddit.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,9 @@ import org.slf4j.LoggerFactory;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserServiceI;
+import kr.or.ddit.util.FileUtil;
 
+@MultipartConfig
 @WebServlet("/registUser")
 public class RegistUser extends HttpServlet{
 
@@ -54,7 +57,38 @@ public class RegistUser extends HttpServlet{
 		String zipcode = req.getParameter("zipcode");
 		
 		
-		UserVo userVo = new UserVo(userid, usernm, pass, new Date(), alias, addr1, addr2, zipcode);
+		
+		//사용자가 profile 사진을 업로드 한경우 - 업로드 했을때만
+		//1. 전송한 파일 이름(realFile)
+		//2. 파일 확장자
+		//3. 서버에 저장할 파일이름(realFileName)
+		//4. 서버에 지정된 공간에 저장
+		
+		Part profile = req.getPart("profile");
+		String filename="";
+		String realfilename="";
+		
+		if(profile.getSize()>0) {
+			
+			//1. 전송한 파일 이름(realFile)
+			filename = FileUtil.getFileName(profile.getHeader("Content-Disposition"));
+			
+			//2. 파일 확장자
+			String fileExtension = FileUtil.getFileExtension(filename);
+
+			//3. 서버에 저장할 파일이름(realFileName)
+			//brown 이거나 brown.png 일때 만약에 .이 없는 경우면 fileExtension여기에서 미리 .붙인걸 리턴해줘. 그래서 이제 뒤에 +fileExtension 만 해줌됨
+			realfilename = UUID.randomUUID().toString() + fileExtension;
+			
+			//4. 서버에 지정된 공간에 저장
+			profile.write("d:\\upload\\" + realfilename);
+			
+			
+		}
+		
+		
+		
+		UserVo userVo = new UserVo(userid, usernm, pass, new Date(), alias, addr1, addr2, zipcode, filename ,realfilename );
 		
 		int registerUserCnt=0;
 

@@ -92,16 +92,24 @@
 		
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			
-				<form method="post" class="form-horizontal" role="form" action="${cp}/userModify">
+				<form method="post" class="form-horizontal" role="form" action="${cp}/userModify" enctype="multipart/form-data">
 					<input type="hidden" name="userid" value="${user.userid}">
 					
+					<div class="form-group">
+						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
+						<div class="col-sm-10">
+							<img src="${cp}/profile/${user.userid}.png"/>
+							<input type="file" class="form-control" id="profile" name="profile" />	
+						</div>
+					</div>
+
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
 								<label class="control-label">${user.userid}</label>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 						<div class="col-sm-10">
@@ -119,7 +127,7 @@
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="pass" name="pass" value="Password">
+							<input type="password" class="form-control" id="pass" name="pass" value="${user.pass}">
 							<%-- <label class="control-label"><%= vo.getPass()%></label> --%>
 						</div>
 					</div>

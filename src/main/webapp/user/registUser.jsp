@@ -116,7 +116,7 @@
 		<div class="row">
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			
-				<form method="post" class="form-horizontal" role="form" action="${cp}/registUser">
+				<form method="post" class="form-horizontal" role="form" action="${cp}/registUser" enctype="multipart/form-data">
 					
 					<!-- pageContext.getRequest.contextPath 이걸 EL을 쓰면 
 					
@@ -131,6 +131,8 @@
 					<div class="form-group">
 						<label for="userid" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
+						
+						
 <%-- 						<% String userid = request.getParameter("userid");
 							userid = userid == null ? "" : userid; %>
 							
@@ -138,11 +140,26 @@
 							널처리를 안해주고 value값에 그냥 바로 getParameter해버리면 최초 사용자 등록할때도 널값이 뜬다.
 							그게 보기 싫으니까 위에 삼항연산자를 써서 널처리를 해결한건데
 							그거 때문에 두줄이나 길어지니까 그게 보기 싫어서 EL을 쓰는거지. EL을 쓰는 이유를 다시한번 상기.
+						
+						
 							
- --%>						<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디를 입력하세요." 
+ --%>						<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디를 입력하세요." /> 
+ 						
+							
+ 						
  							<%-- value="<%=userid%> 이렇게 했었는데, 위에 제이쿼리로 해서 이거 안써도 됨
- 								근데 el로도 표현 가능함. value="${param.userid}"	 --%> >
+ 								근데 el로도 표현 가능함. value="${param.userid}"	 --%> 
 						</div>
+						
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
+						<div class="col-sm-10">
+							<input type="file" class="form-control" name="profile" />
+						</div>
+					
 					</div>
 
 					<div class="form-group">
