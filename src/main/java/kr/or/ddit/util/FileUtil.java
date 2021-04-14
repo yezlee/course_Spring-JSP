@@ -29,7 +29,6 @@ public class FileUtil {
 	}
 	
 	
-	
 	public static String getFileExtension(String fileName) {
 		
 		//brown.png
@@ -42,8 +41,5 @@ public class FileUtil {
 		}
 		
 		return "." + fileName.substring(fileName.lastIndexOf(".")+1);
-		
 	}
-	
-		
 }
