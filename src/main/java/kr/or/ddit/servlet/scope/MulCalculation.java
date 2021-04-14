@@ -34,5 +34,4 @@ public class MulCalculation extends HttpServlet {
 		
 		request.getRequestDispatcher("jsp/mulResult.jsp").forward(request, response);
 	}
-
 }
