@@ -16,7 +16,6 @@ public class ApplicationListener implements ServletContextListener{
 		logger.debug("Init");
 		ServletContext sc = sce.getServletContext();
 		sc.setAttribute("cp", sc.getContextPath());
-		
 	}
 
 	@Override
