@@ -37,5 +37,4 @@ public class InitDBCP extends HttpServlet{
 		sc.setAttribute("bs", bs);
 		
 	}
-	
 }
