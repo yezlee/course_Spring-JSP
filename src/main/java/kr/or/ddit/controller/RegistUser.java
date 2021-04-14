@@ -57,7 +57,6 @@ public class RegistUser extends HttpServlet{
 		String zipcode = req.getParameter("zipcode");
 		
 		
-		
 		//사용자가 profile 사진을 업로드 한경우 - 업로드 했을때만
 		//1. 전송한 파일 이름(realFile)
 		//2. 파일 확장자
