@@ -39,8 +39,6 @@ public class CookieUtil {
 		//another_cookies_arr[1] = 쿠키값
 		
 		
-		
-		
 		 return "";
 	}
 }
