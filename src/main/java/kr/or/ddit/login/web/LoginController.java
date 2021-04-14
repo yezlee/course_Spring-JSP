@@ -157,9 +157,5 @@ public class LoginController extends HttpServlet{
 		else {
 			resp.sendRedirect(req.getContextPath() + "/login.jsp");
 		}
-		
-		
-		
 	}
-
 }
