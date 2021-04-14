@@ -28,14 +28,10 @@ public class DefaultParameterFilter implements Filter{
 		
 		DefaultParameterRequestWrapper wrapper = new DefaultParameterRequestWrapper((HttpServletRequest)request);
 		chain.doFilter(wrapper, response);
-		
-		
 	}
 	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
 	}
-	
 }
